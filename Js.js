@@ -38,7 +38,7 @@ function displayCountriesInfo() {
     data.data.forEach((itemcountryInfo) => {
         countryInfo += "<tr>"; 
         countryInfo += "<td>" + itemcountryInfo.name + "</td>"
-    }
+    });
 }
 
 
