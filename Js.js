@@ -35,7 +35,7 @@ const getCoords = async (baseUrl, searchInput) => {
 function displayCountriesInfo() {
     let countryInfo = ""; 
 
-    data.data.forEach((itemcountryInfo) => {
+    data.forEach((itemcountryInfo) => {
         countryInfo += "<tr>"; 
         countryInfo += "<td>" + itemcountryInfo.name + "</td>"
     });
