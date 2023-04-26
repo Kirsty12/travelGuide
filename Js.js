@@ -22,7 +22,7 @@ const getCoords = async (baseUrl, searchInput) => {
     try{
         const data = await results.json(); 
         console.log(data); 
-        displayCountriesInfo(data);
+        return data;
     }
     catch (error){
         alert("error");
@@ -32,13 +32,6 @@ const getCoords = async (baseUrl, searchInput) => {
 
 }; 
 
-function displayCountriesInfo() {
-    let countryInfo = ""; 
 
-    data.forEach((itemcountryInfo) => {
-        countryInfo += "<tr>"; 
-        countryInfo += "<td>" + itemcountryInfo.name + "</td>"
-    });
-}
 
 
