@@ -33,8 +33,12 @@ const getCoords = async (baseUrl, searchInput) => {
 }; 
 
 function displayCountriesInfo() {
-    const country = data.name[0];
-    const tdDiv = document.getElementById("countryName")
+    let countryInfo = ""; 
+
+    data.data.forEach((itemcountryInfo) => {
+        countryInfo += "<tr>"; 
+        countryInfo += "<td>" + itemcountryInfo.name + "</td>"
+    }
 }
 
 
