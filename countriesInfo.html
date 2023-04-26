@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+     <!-- make page resposive to different screen sizes -->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--link to CSS-->
+     <link rel="stylesheet" href="styles.css"> 
+     
+     <title>Search Results</title>
+    </head>
+
+    <body>
+        <header>
+
+            
+            <!-- Nav Bar -->
+            <div class="navbar"> 
+                <a class="active" href="index.html"> Home </a>
+                <a href="america.html"> America </a>
+                <a href="england.html"> England </a>
+                <a href="spain.html"> Spain </a>
+                
+                <div class="search-container">
+                        <input type="text" placeholder="Search..." id="search">
+                        <button type="submit" onclick="getData(baseUrl)">Go</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search Titles -->
+        <h1>Search Results</h1>
+        <h2 id="countryName"></h2>
+
+        <div>
+            <!-- Table to Display Countries Information -->
+            <table style="width:80%">
+                <tr>
+                    <label>Country Name:</label>
+                    <td id="countryName"></td>
+                </tr>
+                <tr>
+                    <label>Capital City:</label>
+                    <td id="capitalCity"></td>
+                </tr>
+                <tr>
+                    <label>Population:</label>
+                    <td id="population"></td>
+                </tr>
+                <tr>
+                    <label>Language(s):</label>
+                    <td id="language"></td>
+                </tr>
+                <tr>
+                    <label>Flag:</label>
+                    <td id="flag"></td>
+                </tr>
+            </table>
+        </div>
+        
+
+        <!-- page footer containing text and links to external webpages-->
+    <footer> 
+        <p> These are my picks for places to visit! <br>
+        For more information on each of these countries, please visit the following Wikipedia pages: </p>
+
+        <p class="wiki">
+            <a href="https://en.wikipedia.org/wiki/United_States"> America's Wikipedia Page</a>
+            <a href="https://en.wikipedia.org/wiki/England"> England's Wikipedia Page</a>
+            <a href="https://en.wikipedia.org/wiki/Spain"> Spain's Wikipedia Page</a>
+        </p>
+
+        <!--link to JavaScript file-->
+        <script src="Js.js"></script>
+    
+    </footer>
+
+    </body>
+
+</html>

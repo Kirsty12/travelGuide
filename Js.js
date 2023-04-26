@@ -1,11 +1,11 @@
-const username = "kirstyr"; 
-const baseUrl = "http://api.geonames.org/countryInfo";
+//const username = "kirstyr"; 
+const baseUrl = "https://restcountries.com/v3.1/name/";
 
 
 function getData(baseUrl){
 const searchInput = document.getElementById("search").value; 
 if (searchInput !== ""){ 
-    getCoords(username, searchInput, baseUrl)
+    getCoords(baseUrl, searchInput)
     .catch(function (error) {
         console.log(error); 
         alert("Invalid Search"); 
@@ -13,11 +13,11 @@ if (searchInput !== ""){
     }
 }
 
-//var url = baseUrl + searchInput; 
-
-const getCoords = async (username, searchInput, baseUrl) => {
-    const URL = `${baseUrl}?q=${searchInput}&username=${username}`; 
+const getCoords = async (baseUrl, searchInput) => {
+    const URL = `${baseUrl}${searchInput}`; 
     console.log(URL); 
+
+
     const results = await fetch(URL);
     try{
         const data = await results.json(); 
@@ -28,7 +28,8 @@ const getCoords = async (username, searchInput, baseUrl) => {
         alert("error");
     }
 
-}; 
+    window.location.href="countriesInfo.html"; 
 
+}; 
 
 
