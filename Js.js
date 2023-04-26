@@ -3,7 +3,7 @@ const baseUrl = "https://restcountries.com/v3.1/name/";
 
 
 function getData(baseUrl){
-//window.location.href="countriesInfo.html"; 
+
 const searchInput = document.getElementById("search").value; 
 if (searchInput !== ""){ 
     getCoords(baseUrl, searchInput)
@@ -12,7 +12,8 @@ if (searchInput !== ""){
         alert("Invalid Search"); 
     })
     }
-//}
+    window.location.href="countriesInfo.html"; 
+}
 
 const getCoords = async (baseUrl, searchInput) => {
     const URL = `${baseUrl}${searchInput}`; 
@@ -29,9 +30,9 @@ const getCoords = async (baseUrl, searchInput) => {
         alert("error");
     }
 
-}; 
+//}; 
 
-let displayCountryInfo = {
+let countryInfo = {
     name: '', 
     capital: '', 
     population: '', 
@@ -40,12 +41,15 @@ let displayCountryInfo = {
 
 }
 
-countryInfo.forEach(element => {
+data.forEach(element => {
     let info = element.info; 
 
-    displayCountryInfo.name = element.name; 
-})
+    countryInfo.name = element.name; 
+});
 }
+
+
+
 
 
 
