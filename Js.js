@@ -15,6 +15,15 @@ if (searchInput !== ""){
    // window.location.href="countriesInfo.html"; 
 }
 
+let countries = {
+
+    name: '',
+    capital: '', 
+    languages: '',
+    population: 0,
+    flag: '',
+}
+
 //pass base url and search input to getCoords to get data from api. 
     const getCoords = async (baseUrl, searchInput) => {
     const URL = `${baseUrl}${searchInput}`; 
@@ -22,20 +31,41 @@ if (searchInput !== ""){
 
     //fetch call to get data from api
     const results = await fetch(URL);
-    try{
         //convert data to json format
         const data = await results.json(); 
         console.log(data); 
-        return data;
-    }
-    catch (error){
-        alert("error");
-        console.log(error); 
-    }
+
+
+    data.forEach(element => {
+
+        let info = element.info;
+    
+        countries.name = element.name.official;
+        countries.capital.capitalName = element.capital[0];
+        countries.languages.capitalName = element.capital[0];
+
+    });  
+
+    let formattedNUmber = numberFormatter(informationAboutCountry.population);
+
+    let areaNumber = numberFormatter(informationAboutCountry.area);
+
+    $('#officialName').html(informationAboutCountry.name);
+
+    $('#capital').html(informationAboutCountry.capital.capitalName);
+    $('#population').html(formattedNUmber);
+    $('#area').html(areaNumber).append(' square km');
+    $('#currency').html(informationAboutCountry.currency);
+    $('#timez').html(informationAboutCountry.timezones);
+    $('#flag').attr("src", informationAboutCountry.flag);
 
 }; 
 
+function displayData(data) {
+    document.getElementById("displayInfo").innerHTML = JSON.stringify(data);
+}
 
+//document.getElementById("displayInfo").innerHTML = data[0];
 
 
 
