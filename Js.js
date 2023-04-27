@@ -22,22 +22,22 @@ if (searchInput !== ""){
 
     //fetch call to get data from api
     const results = await fetch(URL);
-        
+        const data = results.json();
 
-    try{
-        //convert data to json format
-        const data = await results.json(); 
-        console.log(data); 
-        return data;
-    }
-    catch (error){
-        alert("error");
-        console.log(error); 
-    }
+        let table = '';
 
-
-
-}; 
+        data.countries.forEach(function(country){
+            table += `<tr>
+                        <td>${country.altSpellings}</td>
+                        <td>${country.capital}</td>
+                        <td>${country.languages}</td>
+                        <td>${country.population}</td>
+                        <td>${country.flags}</td>
+                     </tr>
+                        `
+        })
+        document.getElementsById("displayInfo").innerHTML = table; 
+}
 
 
 
