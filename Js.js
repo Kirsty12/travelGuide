@@ -1,7 +1,7 @@
 //const username = "kirstyr"; 
 const baseUrl = "https://restcountries.com/v3.1/name/";
 
-
+//get data from search input and pass to getCoords
 function getData(baseUrl){
 
 const searchInput = document.getElementById("search").value; 
@@ -15,36 +15,55 @@ if (searchInput !== ""){
    // window.location.href="countriesInfo.html"; 
 }
 
-const getCoords = async (baseUrl, searchInput) => {
+//pass base url and search input to getCoords to get data from api. 
+/*const getCoords = async (baseUrl, searchInput) => {
     const URL = `${baseUrl}${searchInput}`; 
     console.log(URL); 
 
-
+    //fetch call to get data from api
     const results = await fetch(URL);
     try{
+        //convert data to json format
         const data = await results.json(); 
         console.log(data); 
         return data;
     }
     catch (error){
         alert("error");
+        console.log(error); 
     }
 
-    document.getElementById('countriesInfo').innerHTML = data[0].altSpellings[1]; 
+}; 
+*/
 
-//}; 
+const getCoords = async (baseUrl, searchInput) => {
+    const URL = `${baseUrl}${searchInput}`; 
+    console.log(URL); 
 
-let countryInfo = {
-    name: '', 
-    capital: '', 
-    population: '', 
-    language: '', 
-    flag: '', 
+    //fetch call to get data from api
+    fetch(URL).then((data) =>{
+        return data.json(); 
+    }).then((objectData)=>{
+        console.log(objectData[0].capital); 
 
-}
+        let tableData=""; 
+        objectData.map((values)=>{
+            tableData +=` <col>
+                <td>${values.altSpellings}</td>
+                <td>${values.capital}</td>
+                <td>${values.languages}</td>
+                <td>${values.population}</td>
+                <td>${values.flag}</td>
+                </col>`;
+            //tableData.toString();
+        }); 
+        document.getElementById('countriesInfo').innerHTML=tableData; 
+    })
+
+}; 
 
 
-}
+
 
 
 
