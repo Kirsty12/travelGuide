@@ -65,11 +65,6 @@ function displayData(data) {
     document.getElementById("displayInfo").innerHTML = JSON.stringify(data);
 }
 
-//document.getElementById("displayInfo").innerHTML = data[0];
-
-
-
-
 
 
 
