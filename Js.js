@@ -12,7 +12,7 @@ if (searchInput !== ""){
         alert("Invalid Search"); 
     })
     }
-    window.location.href="countriesInfo.html"; 
+   // window.location.href="countriesInfo.html"; 
 }
 
 const getCoords = async (baseUrl, searchInput) => {
@@ -30,6 +30,8 @@ const getCoords = async (baseUrl, searchInput) => {
         alert("error");
     }
 
+    document.getElementById('countriesInfo').innerHTML = data[0].altSpellings[1]; 
+
 //}; 
 
 let countryInfo = {
@@ -41,11 +43,7 @@ let countryInfo = {
 
 }
 
-data.forEach(element => {
-    let info = element.info; 
 
-    countryInfo.name = element.name; 
-});
 }
 
 
