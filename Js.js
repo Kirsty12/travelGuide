@@ -44,7 +44,7 @@ const getCoords = async (baseUrl, searchInput) => {
     fetch(URL).then((data) =>{
         return data.json(); 
     }).then((objectData)=>{
-        console.log(objectData[0].capital); 
+        console.log(objectData[0]); 
 
         let tableData=""; 
         objectData.map((values)=>{
@@ -57,7 +57,7 @@ const getCoords = async (baseUrl, searchInput) => {
                 </col>`;
             //tableData.toString();
         }); 
-        document.getElementById('countriesInfo').innerHTML=tableData; 
+       // document.getElementById('countriesInfo').innerHTML=tableData; 
     })
 
 }; 
