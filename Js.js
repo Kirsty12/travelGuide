@@ -44,24 +44,24 @@ const getCoords = async (baseUrl, searchInput) => {
     fetch(URL).then((data) =>{
         return data.json(); 
     }).then((objectData)=>{
-        console.log(objectData[0]); 
+        console.log(objectData[0].capital); 
 
         let tableData=""; 
         objectData.map((values)=>{
-            tableData +=` <col>
-                <td>${values.altSpellings}</td>
-                <td>${values.capital}</td>
-                <td>${values.languages}</td>
-                <td>${values.population}</td>
-                <td>${values.flag}</td>
-                </col>`;
-            //tableData.toString();
+            tableData =`<li>${values.capital}</li>`;
         }); 
-       // document.getElementById('countriesInfo').innerHTML=tableData; 
+        document.getElementById("displyInfo").innerHTML=tableData;
     })
 
 }; 
 
+function displayInfo(data){
+    data.forEach(country => {
+        const markup = `<li>${country.capital}</li>`;
+
+        document.getElementById('countriesInfo').innerHTML = markup;
+    })
+}
 
 
 
