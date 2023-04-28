@@ -41,7 +41,7 @@ if (searchInput !== ""){
             </tr>
             <tr>
             <th>Languages</th>
-            <td>${country.languages}</td>
+            <td>${country.languages[0]}</td>
             </tr>
             <tr>
             <th>Population</th>
@@ -49,7 +49,7 @@ if (searchInput !== ""){
             </tr>
             <tr>
             <th>Flag</th>
-            <td>${country.flag}</td>
+            <td><img src=${country.flags.png}></td>
             </tr>
             `;
     });  
