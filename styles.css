@@ -22,9 +22,9 @@ header {
 
 main {
     display:block;
-    padding-top: 3em;
-    padding-bottom: 3em;
-    min-height: 85%;
+    padding-top: auto;
+    padding-bottom: auto;
+    min-height: 90%;
 }
 
 p {
@@ -39,6 +39,9 @@ footer {
     float: left;
     width: 100%;
     padding: auto;
+    position: absolute;
+    bottom:0;
+    display: block;
 }
 
 /* links in footer */
@@ -72,13 +75,14 @@ footer .wiki a {
 
  /* navbar search bar */
  /* .navbar input[type=text] */
- .navbar .search-container {
-    float: right;
+ .search-container {
+    float: center;
     padding: auto;
     font-size: medium;
-    margin-top: 25px;
-    margin-right: 25px;
-    position: relative;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    text-align: center;
  }
 
  /* navbar - change style on mouse hover */

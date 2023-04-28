@@ -12,7 +12,7 @@ if (searchInput !== ""){
         alert("Invalid Search"); 
     })
     }
-    window.location.href="countriesInfo.html"; 
+    
 }
 
 //pass base url and search input to getCoords to get data from api. 
