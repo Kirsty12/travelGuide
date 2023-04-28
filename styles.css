@@ -73,9 +73,22 @@ footer .wiki a {
     text-decoration: none;
  }
 
+ .searchbtn {
+    float: right;
+    padding: auto;
+    margin-top: 25px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    border: 6px outset cyan;
+    height:68px;
+    width:85px; 
+    border-radius: 12px;
+    background-color: aliceblue;
+
+ }
+
  /* navbar search bar */
- /* .navbar input[type=text] */
- .search-container {
+  .search-container {
     float: center;
     padding: auto;
     font-size: medium;
