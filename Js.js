@@ -12,7 +12,7 @@ if (searchInput !== ""){
         alert("Invalid Search"); 
     })
     }
-   // window.location.href="countriesInfo.html"; 
+    window.location.href="countriesInfo.html"; 
 }
 
 //pass base url and search input to getCoords to get data from api. 
@@ -27,10 +27,7 @@ if (searchInput !== ""){
         console.log(data); 
 
         let li = '';
-        
-        //let unknownKey = Object.keys(country.languages)[0];
-
-        
+                
         //loops through data and pulls out specific information
         data.forEach((country) => {
             //assigns value of object key for country language to unknownKey variable. 
