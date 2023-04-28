@@ -34,6 +34,7 @@ if (searchInput !== ""){
         //loops through data and pulls out specific information
         data.forEach((country) => {
             let unknownKey = Object.keys(country.languages)[0];
+
             li += `
             <tr>
             <th>Name</th>
@@ -45,7 +46,7 @@ if (searchInput !== ""){
             </tr>
             <tr>
             <th>Languages</th>
-            <td>${country.languages.unknownKey}</td>
+            <td>${country.languages[unknownKey]}</td>
             </tr>
             <tr>
             <th>Population</th>
@@ -57,7 +58,7 @@ if (searchInput !== ""){
             </tr>
             `;
 
-            console.log(unknownKey);
+            console.log(country.languages[unknownKey]);
     });  
 
    
