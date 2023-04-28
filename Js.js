@@ -33,7 +33,10 @@ if (searchInput !== ""){
         
         //loops through data and pulls out specific information
         data.forEach((country) => {
+            //assigns value of object key for country language to unknownKey variable. 
             let unknownKey = Object.keys(country.languages)[0];
+            //formats population number to add a commas
+            let population = (country.population).toLocaleString('en-GB');
 
             li += `
             <tr>
@@ -50,7 +53,7 @@ if (searchInput !== ""){
             </tr>
             <tr>
             <th>Population</th>
-            <td>${country.population}</td>
+            <td>${population}</td>
             </tr>
             <tr>
             <th>Flag</th>
@@ -58,16 +61,11 @@ if (searchInput !== ""){
             </tr>
             `;
 
-            console.log(country.languages[unknownKey]);
     });  
-
-   
  
     //displays output in html list
     document.getElementById("displayInfo").innerHTML = li;
 };
-
-
 
 
 
