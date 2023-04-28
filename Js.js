@@ -15,18 +15,9 @@ if (searchInput !== ""){
    // window.location.href="countriesInfo.html"; 
 }
 
-let countries = {
-
-    name: '',
-    capital: '', 
-    languages: '',
-    population: 0,
-    flag: '',
-}
-
 //pass base url and search input to getCoords to get data from api. 
     const getCoords = async (baseUrl, searchInput) => {
-    const URL = `${baseUrl}${searchInput}`; 
+    const URL = `${baseUrl}${searchInput}?fullText=true`; 
     console.log(URL); 
 
     //fetch call to get data from api
@@ -35,35 +26,37 @@ let countries = {
         const data = await results.json(); 
         console.log(data); 
 
-
-    data.forEach(element => {
-
-        let info = element.info;
-    
-        countries.name = element.name.official;
-        countries.capital.capitalName = element.capital[0];
-        countries.languages.capitalName = element.capital[0];
-
+        let li = '';
+        
+        //loops through data and pulls out specific information
+        data.forEach((country) => {
+            li += `
+            <tr>
+            <th>Name</th>
+            <td>${country.name.official}</td>
+            </tr>
+            <tr>
+            <th>Capital</th>
+            <td>${country.capital}</td>
+            </tr>
+            <tr>
+            <th>Languages</th>
+            <td>${country.languages}</td>
+            </tr>
+            <tr>
+            <th>Population</th>
+            <td>${country.population}</td>
+            </tr>
+            <tr>
+            <th>Flag</th>
+            <td>${country.flag}</td>
+            </tr>
+            `;
     });  
-
-    let formattedNUmber = numberFormatter(informationAboutCountry.population);
-
-    let areaNumber = numberFormatter(informationAboutCountry.area);
-
-    $('#officialName').html(informationAboutCountry.name);
-
-    $('#capital').html(informationAboutCountry.capital.capitalName);
-    $('#population').html(formattedNUmber);
-    $('#area').html(areaNumber).append(' square km');
-    $('#currency').html(informationAboutCountry.currency);
-    $('#timez').html(informationAboutCountry.timezones);
-    $('#flag').attr("src", informationAboutCountry.flag);
-
-}; 
-
-function displayData(data) {
-    document.getElementById("displayInfo").innerHTML = JSON.stringify(data);
-}
+ 
+    //displays output in html list
+    document.getElementById("displayInfo").innerHTML = li;
+};
 
 
 
