@@ -4,6 +4,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     const topVotedSection = document.getElementById("topVotedCountries");
     const countrySection = document.querySelector(".destination-list");
     const searchInput = document.getElementById("searchInput");
+    const menuToggle = document.getElementById("menuToggle");
+    const navbarMenu = document.getElementById("navbarMenu");
+
+    // Ensure the elements exist before adding event listeners
+    if (!menuToggle || !navbarMenu) {
+        console.error("Navbar elements not found on this page.");
+        return;
+    }
+    
+    // Toggle menu when clicking the button
+    menuToggle.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevent closing immediately
+        navbarMenu.classList.toggle("active");
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", function (event) {
+        if (!menuToggle.contains(event.target) && !navbarMenu.contains(event.target)) {
+            navbarMenu.classList.remove("active");
+        }
+    });
+
+    // Prevent the menu from closing when clicking inside
+    navbarMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
+    
 
     // Retrieve votes from localStorage or initialize an empty object
     let votes = JSON.parse(localStorage.getItem("countryVotes")) || {};
@@ -111,101 +138,68 @@ document.addEventListener("DOMContentLoaded", async () => {
     function updateTopVotedCountries() {
         const topVotedSection = document.getElementById("topVotedCountries");
         if (!topVotedSection) return;
-
-        // Sort countries by highest votes (descending order) and take the top 5
+    
+        // Sort by highest votes and take the top 5
         const sortedCountries = Object.entries(votes)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 5);
-
-        topVotedSection.innerHTML = ""; // Clear existing content
-
-        sortedCountries.forEach(([country]) => {
+    
+        topVotedSection.innerHTML = ""; // Clear previous content
+    
+        sortedCountries.forEach(([country], index) => {
             const imageName = country.toLowerCase().replace(/ /g, "-") + ".jpg";
             const imageUrl = `images/countries/${imageName}`;
-
-            const card = document.createElement("div");
-            card.classList.add("country-card");
-            card.innerHTML = `
-                <img src="${imageUrl}" alt="${country}" onerror="this.src='images/countries/placeholder.jpg'">
-                <h3>${country}</h3>
-                <a href="https://en.wikipedia.org/wiki/${encodeURIComponent(country)}" target="_blank">Explore</a>
+    
+            const isActive = index === 0 ? "active" : ""; // First item needs "active" class
+    
+            const card = `
+                <div class="carousel-item ${isActive}">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10">
+                                <div class="card">
+                                    <img src="${imageUrl}" class="card-img-top" alt="${country}" onerror="this.src='images/countries/placeholder.jpg'">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${country}</h5>
+                                        <p class="card-text">Explore the beauty of ${country}.</p>
+                                        <a href="https://en.wikipedia.org/wiki/${encodeURIComponent(country)}" target="_blank" class="btn btn-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             `;
-            topVotedSection.appendChild(card);
+    
+            topVotedSection.innerHTML += card;
         });
-
-        setupCarousel(); // Call function to enable carousel functionality
+    
+        // 🛠 Delay carousel reinitialization to ensure DOM is updated
+        setTimeout(() => {
+            reinitialiseCarousel();
+        }, 500);
     }
+    
 
-    // Function to enable carousel navigation
-    function setupCarousel() {
-        const carousel = document.querySelector(".carousel");
-        const prevBtn = document.querySelector(".carousel-btn.prev");
-        const nextBtn = document.querySelector(".carousel-btn.next");
+    function reinitialiseCarousel() {
+        let carouselElement = document.querySelector("#topVotedCarousel");
     
-        if (!carousel) return;
-    
-        const scrollStep = 270; // Width of each card + gap
-        const visibleSlides = 5; // Number of slides visible at a time
-        let isTransitioning = false;
-        
-        const slides = [...carousel.children];
-        const totalSlides = slides.length;
-    
-        // Clone all slides to create a seamless effect
-        slides.forEach(slide => {
-            const cloneFront = slide.cloneNode(true);
-            const cloneBack = slide.cloneNode(true);
-            carousel.appendChild(cloneFront); // Append clones to the end
-            carousel.insertBefore(cloneBack, carousel.firstChild); // Append clones to the start
-        });
-    
-        const fullSlideCount = carousel.children.length; // Updated count after cloning
-        let currentIndex = totalSlides; // Start at the first real slide set
-    
-        // Move to the first real set (skip cloned slides at the start)
-        carousel.style.transition = "none";
-        carousel.style.transform = `translateX(-${scrollStep * currentIndex}px)`;
-    
-        function moveCarousel(direction) {
-            if (isTransitioning) return;
-            isTransitioning = true;
-    
-            if (direction === "next") {
-                currentIndex++;
-            } else {
-                currentIndex--;
-            }
-    
-            carousel.style.transition = "transform 0.5s ease-in-out";
-            carousel.style.transform = `translateX(-${currentIndex * scrollStep}px)`;
-    
-            setTimeout(() => {
-                if (currentIndex >= fullSlideCount - visibleSlides) {
-                    // Reset instantly to the real first slide
-                    carousel.style.transition = "none";
-                    currentIndex = totalSlides;
-                    carousel.style.transform = `translateX(-${currentIndex * scrollStep}px)`;
-                } else if (currentIndex <= visibleSlides - 1) {
-                    // Reset instantly to the real last slide
-                    carousel.style.transition = "none";
-                    currentIndex = fullSlideCount - (visibleSlides * 2);
-                    carousel.style.transform = `translateX(-${currentIndex * scrollStep}px)`;
-                }
-                setTimeout(() => {
-                    carousel.style.transition = "transform 0.5s ease-in-out";
-                    isTransitioning = false;
-                }, 50);
-            }, 500);
+        if (!carouselElement) {
+            console.error("Carousel element not found.");
+            return;
         }
     
-        // Click Events for Buttons
-        nextBtn.addEventListener("click", () => moveCarousel("next"));
-        prevBtn.addEventListener("click", () => moveCarousel("prev"));
+        // Force Bootstrap to reinitialize the carousel
+        let bsCarousel = bootstrap.Carousel.getInstance(carouselElement);
+        if (bsCarousel) {
+            bsCarousel.dispose(); // Remove old instance
+        }
+    
+        bsCarousel = new bootstrap.Carousel(carouselElement, {
+            interval: 5000, // Auto-slide every 5 seconds
+            wrap: true // Enables infinite looping
+        });
     }
-    
-    
-    
-    
     
     // Event delegation ensures voting works on dynamically loaded content
     document.body.addEventListener("click", (e) => {

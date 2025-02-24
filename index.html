@@ -4,18 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Guide</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
         <h1>World Travel Guide</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="destinations.html">Destinations</a></li>
-            </ul>
-        </nav>    
+       
+        <nav class="navbar">
+            <div class="container-fluid">
+                <!-- Hamburger Menu Button -->
+                <button class="navbar-toggler custom-toggler" id="menuToggle">
+                    ☰ <!-- Unicode for the hamburger icon -->
+                </button>
+    
+                <!-- Dropdown Menu -->
+                <div class="menu-content" id="navbarMenu">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="destinations.html">Destinations</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      
     </header>
 
     <section class="hero">
@@ -24,19 +41,39 @@
 
     <section class="featured">
         <h2>Top 5 Voted Holiday Destinations</h2>
-        <div class="carousel-container">
-            <button class="carousel-btn prev">&lt;</button>
-            <div class="carousel-wrapper">
-                <div class="carousel" id="topVotedCountries">
-                    <!-- Top voted destinations will be dynamically inserted here -->
-                </div>
+        <div id="topVotedCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="topVotedCountries">
+                <!-- Country slides will be added dynamically -->
             </div>
-            <button class="carousel-btn next">&gt;</button>
+    
+            <!-- Carousel Navigation -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#topVotedCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#topVotedCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </section>
+
+    <section>
+        <p class="cta-text">
+            To discover more amazing destinations and vote for your favorite, 
+            <a href="destinations.html" class="cta-link">click here</a>.
+        </p>
+    </section>
+    
+    
 
     <footer>
         <p>© 2025 Travel Guide </p>
     </footer>
+
+    <!-- Load Scripts at the End -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js" defer></script>
+
 </body>
 </html>
