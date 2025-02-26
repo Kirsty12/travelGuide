@@ -3,13 +3,14 @@ body {
     font-family: "Poppins", Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #f8f9fa;
+    background: #f5f7fa;
     color: #333;
     text-align: center;
 }
 
+/* Header Styling */
 header {
-    background: #006666;
+    background: linear-gradient(135deg, #008080, #00a8a8);
     color: white;
     padding: 20px;
     text-align: center;
@@ -19,17 +20,35 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* NAVBAR */
-/* Custom Navbar Styling */
+/* NAVBAR STYLING */
 .navbar {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    background: #006666; /* Darker Teal */
-    padding: 12px;
-    z-index: 1000;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Ensuring navbar height is consistent */
+.navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position:relative;
+}
+
+/* Title Styling */
+.navbar-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); 
+    margin: 0;
 }
 
 /* Hamburger Button */
@@ -42,23 +61,25 @@ header {
     padding: 8px 12px;
     transition: all 0.3s ease-in-out;
     border-radius: 6px;
+    position: absolute;
+    left: 20px; /* Push to left */
 }
 
-/* Hamburger Button Hover Effect */
+/* Same size across all pages */
 .navbar-toggler:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.1);
 }
 
-/* Dropdown Menu (Hidden by Default) */
+/* Dropdown Menu Styling */
 .menu-content {
     display: none;
     position: absolute;
-    top: 55px;
-    left: 0;
-    background: #ffffff;
+    top: 50px; 
+    left: 15px;
+    background: white;
     border-radius: 10px;
-    width: 180px;
+    width: 200px;
     padding: 10px 0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
@@ -71,20 +92,19 @@ header {
     transform: translateY(0);
 }
 
-/* Menu Items */
+/* NAVBAR LINKS */
 .navbar-nav {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* Menu Links */
 .navbar-nav .nav-item {
-    padding: 10px 15px;
+    padding: 10px;
     text-align: left;
 }
 
-.navbar-nav .nav-item .nav-link {
+.navbar-nav .nav-link {
     color: #333;
     font-size: 1.1rem;
     font-weight: bold;
@@ -95,24 +115,22 @@ header {
     border-radius: 6px;
 }
 
-/* Hover Effect */
-.navbar-nav .nav-item .nav-link:hover {
+.navbar-nav .nav-link:hover {
     background: #00a8a8;
     color: white;
     transform: scale(1.05);
 }
 
-/*Active Page Styling */
-.navbar-nav .nav-item .nav-link.active {
+.navbar-nav .nav-link.active {
     background: #008080;
     color: white;
     border-radius: 6px;
 }
 
-
+/* HERO SECTION */
 .hero {
     background: url('images/world-map.jpg') no-repeat center center/cover;
-    height: 60vh; 
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,12 +144,12 @@ header {
     font-size: 2.8rem;
     font-weight: bold;
     max-width: 800px;
-    text-shadow: #333;
+    text-align: center;
 }
 
- /* Ensure Carousel is Centered */
+/* CAROUSEL */
 #topVotedCarousel {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 40px auto;
 }
 
@@ -139,41 +157,41 @@ header {
     display: none;
     position: relative;
     width: 100%;
-    height: 500px; /* Adjust as needed */
+    height: 500px;
 }
 
-/* Ensure Images Fill the Slide and Center Properly */
 .carousel-item.active {
-    display: flex !important; /* Ensures proper alignment */
+    display: flex !important;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
-/* Fix Image Centering Issue */
 .carousel-item img {
-    width: 100%; /* Ensures image takes up full width */
-    max-width: 1200px; /* Prevents oversizing */
-    height: 100%; /* Ensures full height */
-    object-fit: cover; /* Prevents distortion */
+    width: 100%;
+    max-width: 1000px;
+    height: 250px;
+    object-fit: cover;
     display: block;
-    margin: auto; /* Centers the image */
+    margin: auto;
 }
 
-/* Center Caption in the Image */
 .carousel-caption {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better readability */
+    background: rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     width: 60%;
+    min-height: 200px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
 }
 
-/* Make the Country Title Larger */
 .carousel-caption h3 {
     font-size: 2rem;
     font-weight: bold;
@@ -181,7 +199,6 @@ header {
     margin-bottom: 10px;
 }
 
-/* Style "Learn More" Button */
 .carousel-caption .btn-primary {
     background: #008080;
     border: none;
@@ -189,11 +206,19 @@ header {
     font-size: 1.2rem;
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
+    align-self: center;
+    margin-top: auto;
 }
 
 .carousel-caption .btn-primary:hover {
     background: #00a8a8;
     transform: scale(1.05);
+}
+
+/* Custom Styling for Carousel Arrows */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(0%) brightness(0%); /* Makes the arrows black */
 }
 
 /* SEARCH BAR */
@@ -206,7 +231,7 @@ header {
     font-size: 16px;
     outline: none;
     transition: all 0.3s ease;
-    display: block; /* Centers the input */
+    display: block;
     text-align: center;
 }
 
@@ -215,9 +240,7 @@ header {
     box-shadow: 0 0 10px rgba(0, 168, 168, 0.5);
 }
 
-
-/* DESTINATION PAGE */
-
+/* DESTINATIONS */
 .destination-intro {
     text-align: center;
     font-size: 18px;
@@ -229,7 +252,7 @@ header {
 
 .destination-list {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
     justify-content: center;
@@ -256,7 +279,7 @@ header {
 }
 
 .vote-btn {
-    margin-top: auto; /* Pushes the button to the bottom */
+    margin-top: auto;
     background: #008080;
     color: white;
     border: none;
@@ -272,6 +295,7 @@ header {
     transform: scale(1.05);
 }
 
+/* FOOTER */
 footer {
     background: #008080;
     color: white;
