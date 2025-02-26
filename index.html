@@ -1,60 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Guide</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        
+       
+        <nav class="navbar">
+            <div class="container-fluid">
+                <!-- Hamburger Menu Button -->
+                <button class="navbar-toggler custom-toggler" id="menuToggle">
+                    ☰ <!-- Unicode for the hamburger icon -->
+                </button>
 
-     <!-- make page resposive to different screen sizes -->
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--link to CSS-->
-     <link rel="stylesheet" href="styles.css"> 
-     
-     <title>Travel Guide</title>
-    </head>
-
-    <body>
-        <header>
-            <h1>Travel Guide</h1>
-            <h2>My Favourite Places to Visit</h2>
-            
-            <!-- Nav Bar -->
-            <div class="navbar"> 
-                <a class="active" href="index.html"> Home </a>
-                <a href="america.html"> America </a>
-                <a href="england.html"> England </a>
-                <a href="spain.html"> Spain </a>
-
-
-                <div class="searchbtn">
-                    <button type="submit" onclick="location.href='countriesInfo.html';">Search for Other Country Info</button>
-                </div>
+                <!--Title-->
+                <h1 class="navbar-title">World Travel Guide</h1>
             </div>
-
-
-        </header>
-
-        <!-- main image on home page -->
-        <div> 
-            <img class="homeImg" src="Images/travel.jpg" alt="world map" style="width:100%;" >
-        </div>
-
-        <!-- page footer containing text and links to external webpages-->
-    <footer> 
-        <p> These are my picks for places to visit! <br>
-        For more information on each of these countries, please visit the following Wikipedia pages: </p>
-
-        <p class="wiki">
-            <a href="https://en.wikipedia.org/wiki/United_States"> America's Wikipedia Page</a>
-            <a href="https://en.wikipedia.org/wiki/England"> England's Wikipedia Page</a>
-            <a href="https://en.wikipedia.org/wiki/Spain"> Spain's Wikipedia Page</a>
-        </p>
-
-        <!--link to JavaScript file-->
-        <script src="Js.js"></script>
     
+                <!-- Dropdown Menu -->
+                <div class="menu-content" id="navbarMenu">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="destinations.html">Destinations</a>
+                        </li>
+                    </ul>
+                </div>
+        </nav>
+      
+    </header>
+
+    <section class="hero">
+        <h2>Discover the World's Best Destinations</h2>
+    </section>
+
+    <section class="featured">
+        <br>
+        <h2>Top 5 Voted Holiday Destinations</h2>
+        <div id="topVotedCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="topVotedCountries">
+                <!-- Country slides will be added dynamically -->
+            </div>
+    
+            <!-- Carousel Navigation -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#topVotedCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#topVotedCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <p class="cta-text">
+            To discover more amazing destinations and vote for your favorite, 
+            <a href="destinations.html" class="cta-link">click here</a>.
+        </p>
+    </section>
+    
+    
+
+    <footer>
+        <p>© 2025 Travel Guide </p>
     </footer>
 
-    </body>
+    <!-- Load Scripts at the End -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js" defer></script>
 
+</body>
 </html>
